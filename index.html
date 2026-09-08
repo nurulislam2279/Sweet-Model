@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Sweet-Model</title> <style> * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; } body { min-height: 100vh; background: linear-gradient(135deg, #111827, #312e81); display: flex; justify-content: center; align-items: center; color: white; padding: 20px; } .login-box { width: 100%; max-width: 400px; padding: 30px 25px; background: rgba(255, 255, 255, 0.1); border-radius: 20px; backdrop-filter: blur(15px); box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3); text-align: center; } .logo { font-size: 50px; margin-bottom: 10px; } h1 { margin-bottom: 8px; font-size: 30px; } .subtitle { color: #d1d5db; margin-bottom: 25px; } .role-buttons { display: flex; gap: 10px; margin-bottom: 15px; } .role-buttons button { width: 50%; margin-top: 0; background: #374151; } .role-buttons button.active { background: #6366f1; } input { width: 100%; padding: 14px; margin: 8px 0; border: none; border-radius: 10px; outline: none; font-size: 15px; } .login-btn { width: 100%; padding: 14px; margin-top: 15px; border: none; border-radius: 10px; background: #6366f1; color: white; font-size: 16px; font-weight: bold; cursor: pointer; } .login-btn:hover { background: #4f46e5; } #message { margin-top: 15px; min-height: 20px; font-size: 14px; } .demo-info { margin-top: 20px; padding: 12px; border-radius: 10px; background: rgba(0, 0, 0, 0.2); color: #d1d5db; font-size: 12px; line-height: 1.6; } </style> </head> <body> <div class="login-box"> <div class="logo">🎬</div> <h1>Sweet-Model</h1> <p class="subtitle">Reels Management App</p> <div class="role-buttons"> <button id="memberBtn" class="login-btn active" onclick="selectRole('member')"> Member </button> <button id="adminBtn" class="login-btn" onclick="selectRole('admin')"> Admin </button> </div> <input type="email" id="email" placeholder="Email" autocomplete="email" > <input type="password" id="password" placeholder="Password" autocomplete="current-password" > <button class="login-btn" onclick="login()"> Login </button> <p id="message"></p> <div class="demo-info"> Demo login<br> Member: member@sweetmodel.com / 123456<br> Admin: admin@sweetmodel.com / 123456 </div> </div> <script> let selectedRole = "member"; function selectRole(role) { selectedRole = role; document .getElementById("memberBtn") .classList.toggle("active", role === "member"); document .getElementById("adminBtn") .classList.toggle("active", role === "admin"); document.getElementById("message").textContent = ""; } function login() { const email = document .getElementById("email") .value .trim() .toLowerCase(); const password = document .getElementById("password") .value; const message = document.getElementById("message"); if (!email || !password) { message.style.color = "#fca5a5"; message.textContent = "Please enter email and password."; return; } // Demo Member Login if ( selectedRole === "member" && email === "member@sweetmodel.com" && password === "123456" ) { message.style.color = "#86efac"; message.textContent = "Member login successful!"; setTimeout(function () { window.location.href = "member.html"; }, 700); return; } // Demo Admin Login if ( selectedRole === "admin" && email === "admin@sweetmodel.com" && password === "123456" ) { message.style.color = "#86efac"; message.textContent = "Admin login successful!"; setTimeout(function () { window.location.href = "admin.html"; }, 700); return; } message.style.color = "#fca5a5"; message.textContent = "Invalid email, password, or selected role."; } </script> </body> </html><!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -20,31 +20,49 @@
       justify-content: center;
       align-items: center;
       color: white;
+      padding: 20px;
     }
 
     .login-box {
-      width: 90%;
-      max-width: 380px;
+      width: 100%;
+      max-width: 400px;
       padding: 30px 25px;
-      background: rgba(255,255,255,0.1);
+      background: rgba(255, 255, 255, 0.1);
       border-radius: 20px;
       backdrop-filter: blur(15px);
-      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
       text-align: center;
     }
 
     .logo {
-      font-size: 42px;
+      font-size: 50px;
       margin-bottom: 10px;
     }
 
     h1 {
       margin-bottom: 8px;
+      font-size: 30px;
     }
 
     .subtitle {
       color: #d1d5db;
       margin-bottom: 25px;
+    }
+
+    .role-buttons {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .role-buttons button {
+      width: 50%;
+      margin-top: 0;
+      background: #374151;
+    }
+
+    .role-buttons button.active {
+      background: #6366f1;
     }
 
     input {
@@ -57,7 +75,7 @@
       font-size: 15px;
     }
 
-    button {
+    .login-btn {
       width: 100%;
       padding: 14px;
       margin-top: 15px;
@@ -70,29 +88,24 @@
       cursor: pointer;
     }
 
-    button:hover {
+    .login-btn:hover {
       background: #4f46e5;
-    }
-
-    .role-buttons {
-      display: flex;
-      gap: 10px;
-      margin-top: 18px;
-    }
-
-    .role-buttons button {
-      margin-top: 0;
-      background: #374151;
-    }
-
-    .role-buttons button.active {
-      background: #6366f1;
     }
 
     #message {
       margin-top: 15px;
-      color: #fca5a5;
       min-height: 20px;
+      font-size: 14px;
+    }
+
+    .demo-info {
+      margin-top: 20px;
+      padding: 12px;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.2);
+      color: #d1d5db;
+      font-size: 12px;
+      line-height: 1.6;
     }
   </style>
 </head>
@@ -108,11 +121,17 @@
     <p class="subtitle">Reels Management App</p>
 
     <div class="role-buttons">
-      <button id="memberBtn" class="active" onclick="selectRole('member')">
+      <button
+        id="memberBtn"
+        class="login-btn active"
+        onclick="selectRole('member')">
         Member
       </button>
 
-      <button id="adminBtn" onclick="selectRole('admin')">
+      <button
+        id="adminBtn"
+        class="login-btn"
+        onclick="selectRole('admin')">
         Admin
       </button>
     </div>
@@ -121,17 +140,27 @@
       type="email"
       id="email"
       placeholder="Email"
+      autocomplete="email"
     >
 
     <input
       type="password"
       id="password"
       placeholder="Password"
+      autocomplete="current-password"
     >
 
-    <button onclick="login()">Login</button>
+    <button class="login-btn" onclick="login()">
+      Login
+    </button>
 
     <p id="message"></p>
+
+    <div class="demo-info">
+      Demo login<br>
+      Member: member@sweetmodel.com / 123456<br>
+      Admin: admin@sweetmodel.com / 123456
+    </div>
 
   </div>
 
@@ -143,30 +172,76 @@
 
       selectedRole = role;
 
-      document.getElementById("memberBtn")
+      document
+        .getElementById("memberBtn")
         .classList.toggle("active", role === "member");
 
-      document.getElementById("adminBtn")
+      document
+        .getElementById("adminBtn")
         .classList.toggle("active", role === "admin");
+
+      document.getElementById("message").textContent = "";
     }
 
     function login() {
 
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
+      const email = document
+        .getElementById("email")
+        .value
+        .trim()
+        .toLowerCase();
+
+      const password = document
+        .getElementById("password")
+        .value;
+
       const message = document.getElementById("message");
 
       if (!email || !password) {
-        message.textContent = "Please enter email and password.";
+        message.style.color = "#fca5a5";
+        message.textContent =
+          "Please enter email and password.";
         return;
       }
 
-      message.style.color = "#86efac";
+      // Demo Member Login
+      if (
+        selectedRole === "member" &&
+        email === "member@sweetmodel.com" &&
+        password === "123456"
+      ) {
+        message.style.color = "#86efac";
+        message.textContent = "Member login successful!";
+
+        setTimeout(function () {
+          window.location.href = "member.html";
+        }, 700);
+
+        return;
+      }
+
+      // Demo Admin Login
+      if (
+        selectedRole === "admin" &&
+        email === "admin@sweetmodel.com" &&
+        password === "123456"
+      ) {
+        message.style.color = "#86efac";
+        message.textContent = "Admin login successful!";
+
+        setTimeout(function () {
+          window.location.href = "admin.html";
+        }, 700);
+
+        return;
+      }
+
+      message.style.color = "#fca5a5";
       message.textContent =
-        "Login system will be connected next.";
+        "Invalid email, password, or selected role.";
     }
 
   </script>
 
 </body>
-</html>
+  </html>
