@@ -1,11 +1,9 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Member Dashboard - Sweet-Model</title>
+  <title>Sweet-Model Member</title>
 
   <style>
     * {
@@ -16,189 +14,115 @@
     }
 
     body {
-      min-height: 100vh;
       background: #f3f4f6;
       color: #111827;
     }
 
-    /* Header */
     header {
-      background: linear-gradient(135deg, #111827, #312e81);
+      background: #111827;
       color: white;
-      padding: 18px 20px;
+      padding: 16px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 10;
     }
 
-    .brand {
-      font-size: 21px;
-      font-weight: bold;
+    header h1 {
+      font-size: 20px;
     }
 
     .logout-btn {
-      border: none;
-      background: #ef4444;
+      background: #dc2626;
       color: white;
-      padding: 9px 14px;
+      border: none;
+      padding: 9px 15px;
       border-radius: 8px;
       cursor: pointer;
-      font-weight: bold;
     }
 
-    .logout-btn:hover {
-      background: #dc2626;
-    }
-
-    /* Main */
-    main {
-      max-width: 1100px;
-      margin: auto;
-      padding: 25px 15px;
+    .container {
+      max-width: 900px;
+      margin: 25px auto;
+      padding: 0 15px;
     }
 
     .welcome {
       background: white;
-      border-radius: 15px;
-      padding: 22px;
+      padding: 20px;
+      border-radius: 12px;
       margin-bottom: 20px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
 
-    .welcome h1 {
-      font-size: 25px;
-      margin-bottom: 7px;
+    .welcome h2 {
+      margin-bottom: 8px;
     }
 
-    .welcome p {
-      color: #6b7280;
-    }
-
-    /* Search */
     .search-box {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 25px;
+      background: white;
+      padding: 15px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
 
     .search-box input {
-      flex: 1;
+      width: 100%;
       padding: 13px;
       border: 1px solid #d1d5db;
-      border-radius: 10px;
-      outline: none;
+      border-radius: 9px;
       font-size: 15px;
     }
 
-    .search-box button {
-      border: none;
-      background: #6366f1;
-      color: white;
-      padding: 0 18px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    /* Section */
-    .section-title {
-      font-size: 21px;
-      margin-bottom: 15px;
-    }
-
-    /* Reels */
-    .reels-grid {
+    .reels {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
+      gap: 15px;
     }
 
     .reel-card {
       background: white;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
 
-    .reel-video {
-      width: 100%;
-      height: 350px;
-      background: #111827;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      font-size: 45px;
+    .reel-card h3 {
+      margin-bottom: 8px;
     }
 
-    .reel-info {
-      padding: 15px;
-    }
-
-    .reel-info h3 {
-      margin-bottom: 7px;
-    }
-
-    .reel-info p {
+    .reel-card p {
       color: #6b7280;
-      font-size: 14px;
-      margin-bottom: 12px;
+      margin-bottom: 15px;
+      line-height: 1.5;
     }
 
     .view-btn {
-      width: 100%;
-      padding: 10px;
-      border: none;
-      border-radius: 8px;
-      background: #6366f1;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .view-btn:hover {
       background: #4f46e5;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
     }
 
-    /* Empty */
     .empty {
-      display: none;
-      text-align: center;
       background: white;
-      padding: 40px 20px;
-      border-radius: 15px;
+      padding: 30px;
+      text-align: center;
+      color: #6b7280;
+      border-radius: 12px;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 30px;
       color: #6b7280;
     }
 
-    /* Mobile */
-    @media (max-width: 800px) {
-      .reels-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .reel-video {
-        height: 300px;
-      }
-    }
-
-    @media (max-width: 550px) {
-      .reels-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .reel-video {
-        height: 420px;
-      }
-
-      .search-box {
-        flex-direction: column;
-      }
-
-      .search-box button {
-        padding: 12px;
+    @media (max-width: 600px) {
+      .container {
+        margin-top: 15px;
       }
     }
   </style>
@@ -206,190 +130,288 @@
 
 <body>
 
-  <!-- Header -->
   <header>
-    <div class="brand">🎬 Sweet-Model</div>
-
-    <button class="logout-btn" onclick="logout()">
-      Logout
-    </button>
+    <h1>🎬 Sweet-Model</h1>
+    <button class="logout-btn" id="logoutBtn">Logout</button>
   </header>
 
-  <!-- Main -->
-  <main>
+  <div class="container">
 
     <div class="welcome">
-      <h1>Welcome, Member 👋</h1>
-      <p>Browse and manage your Reels from your dashboard.</p>
+      <h2>Welcome Member 👋</h2>
+      <p id="userEmail">Loading...</p>
     </div>
 
-    <!-- Search -->
     <div class="search-box">
       <input
         type="text"
         id="searchInput"
         placeholder="Search reels..."
-        onkeyup="searchReels()"
       >
-
-      <button onclick="searchReels()">
-        Search
-      </button>
     </div>
 
-    <h2 class="section-title">
-      Latest Reels
-    </h2>
-
-    <!-- Reels -->
-    <div class="reels-grid" id="reelsGrid">
-
-      <div class="reel-card" data-title="Welcome Reel">
-
-        <div class="reel-video">
-          🎬
-        </div>
-
-        <div class="reel-info">
-          <h3>Welcome Reel</h3>
-
-          <p>
-            Welcome to Sweet-Model.
-          </p>
-
-          <button
-            class="view-btn"
-            onclick="viewReel('Welcome Reel')">
-            View Reel
-          </button>
-        </div>
-
-      </div>
-
-
-      <div class="reel-card" data-title="Sweet Model Reel">
-
-        <div class="reel-video">
-          🎥
-        </div>
-
-        <div class="reel-info">
-          <h3>Sweet Model Reel</h3>
-
-          <p>
-            Latest Sweet-Model content.
-          </p>
-
-          <button
-            class="view-btn"
-            onclick="viewReel('Sweet Model Reel')">
-            View Reel
-          </button>
-        </div>
-
-      </div>
-
-
-      <div class="reel-card" data-title="New Reel">
-
-        <div class="reel-video">
-          📱
-        </div>
-
-        <div class="reel-info">
-          <h3>New Reel</h3>
-
-          <p>
-            New reel will appear here.
-          </p>
-
-          <button
-            class="view-btn"
-            onclick="viewReel('New Reel')">
-            View Reel
-          </button>
-        </div>
-
-      </div>
-
+    <div id="reelsContainer" class="reels">
+      <div class="loading">Loading reels...</div>
     </div>
 
-    <div class="empty" id="emptyMessage">
-      No reels found.
-    </div>
-
-  </main>
+  </div>
 
 
-  <script>
+  <script type="module">
 
-    /* Search Reels */
-    function searchReels() {
+    import {
+      initializeApp
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
-      const search =
-        document
-          .getElementById("searchInput")
-          .value
-          .toLowerCase()
-          .trim();
+    import {
+      getAuth,
+      onAuthStateChanged,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
-      const cards =
-        document.querySelectorAll(".reel-card");
+    import {
+      getFirestore,
+      doc,
+      getDoc,
+      collection,
+      onSnapshot
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-      let found = false;
 
-      cards.forEach(function(card) {
+    const firebaseConfig = {
+      apiKey: "AIzaSyD15DDy67p9Sk68zBOCO2yA8orRt69vMVQ",
+      authDomain: "sweet-model.firebaseapp.com",
+      projectId: "sweet-model",
+      storageBucket: "sweet-model.firebasestorage.app",
+      messagingSenderId: "977088623623",
+      appId: "1:977088623623:web:561067fe266809b1a466a2",
+      measurementId: "G-05EK5P5S8J"
+    };
 
-        const title =
-          card
-            .getAttribute("data-title")
-            .toLowerCase();
 
-        if (title.includes(search)) {
+    const app = initializeApp(firebaseConfig);
 
-          card.style.display = "block";
-          found = true;
+    const auth = getAuth(app);
 
-        } else {
+    const db = getFirestore(app);
 
-          card.style.display = "none";
 
+    const reelsContainer =
+      document.getElementById("reelsContainer");
+
+    const searchInput =
+      document.getElementById("searchInput");
+
+    const logoutBtn =
+      document.getElementById("logoutBtn");
+
+    const userEmail =
+      document.getElementById("userEmail");
+
+
+    let allReels = [];
+
+
+    // Check logged-in member
+    onAuthStateChanged(auth, async (user) => {
+
+      if (!user) {
+        window.location.href = "index.html";
+        return;
+      }
+
+
+      userEmail.textContent = user.email;
+
+
+      try {
+
+        const userDoc = await getDoc(
+          doc(db, "users", user.uid)
+        );
+
+
+        if (!userDoc.exists() ||
+            userDoc.data().role !== "member") {
+
+          alert("Access denied. Member account required.");
+
+          await signOut(auth);
+
+          window.location.href = "index.html";
+
+          return;
         }
 
-      });
 
-      document.getElementById("emptyMessage")
-        .style.display = found ? "none" : "block";
-    }
+        loadReels();
+
+      } catch (error) {
+
+        console.error(error);
+
+        alert("Unable to verify member account.");
+
+        await signOut(auth);
+
+        window.location.href = "index.html";
+      }
+
+    });
 
 
-    /* View Reel */
-    function viewReel(title) {
+    // Load reels from Firestore
+    function loadReels() {
 
-      alert(
-        "Opening: " + title +
-        "\n\nReal video player will be connected next."
+      onSnapshot(
+        collection(db, "reels"),
+        (snapshot) => {
+
+          allReels = [];
+
+
+          snapshot.forEach((docSnapshot) => {
+
+            allReels.push({
+              id: docSnapshot.id,
+              ...docSnapshot.data()
+            });
+
+          });
+
+
+          displayReels(allReels);
+
+        },
+        (error) => {
+
+          console.error(error);
+
+          reelsContainer.innerHTML =
+            '<div class="empty">Unable to load reels.</div>';
+
+        }
       );
 
     }
 
 
-    /* Logout */
-    function logout() {
+    // Display reels
+    function displayReels(reels) {
 
-      const confirmLogout =
-        confirm("Are you sure you want to logout?");
+      reelsContainer.innerHTML = "";
 
-      if (confirmLogout) {
+
+      if (reels.length === 0) {
+
+        reelsContainer.innerHTML =
+          '<div class="empty">No reels available yet.</div>';
+
+        return;
+      }
+
+
+      reels.forEach((reel) => {
+
+        const card =
+          document.createElement("div");
+
+        card.className = "reel-card";
+
+
+        const title =
+          document.createElement("h3");
+
+        title.textContent =
+          reel.title || "Untitled Reel";
+
+
+        const description =
+          document.createElement("p");
+
+        description.textContent =
+          reel.description || "No description available.";
+
+
+        const viewBtn =
+          document.createElement("button");
+
+        viewBtn.className = "view-btn";
+
+        viewBtn.textContent = "View Reel";
+
+
+        viewBtn.addEventListener("click", () => {
+
+          alert(
+            "Reel: " +
+            (reel.title || "Untitled Reel")
+          );
+
+        });
+
+
+        card.appendChild(title);
+
+        card.appendChild(description);
+
+        card.appendChild(viewBtn);
+
+        reelsContainer.appendChild(card);
+
+      });
+
+    }
+
+
+    // Search
+    searchInput.addEventListener("input", () => {
+
+      const searchText =
+        searchInput.value.toLowerCase().trim();
+
+
+      const filteredReels =
+        allReels.filter((reel) => {
+
+          const title =
+            (reel.title || "").toLowerCase();
+
+          const description =
+            (reel.description || "").toLowerCase();
+
+
+          return (
+            title.includes(searchText) ||
+            description.includes(searchText)
+          );
+
+        });
+
+
+      displayReels(filteredReels);
+
+    });
+
+
+    // Logout
+    logoutBtn.addEventListener("click", async () => {
+
+      try {
+
+        await signOut(auth);
 
         window.location.href = "index.html";
 
+      } catch (error) {
+
+        console.error(error);
+
       }
 
-    }
+    });
 
   </script>
 
 </body>
 </html>
-```
