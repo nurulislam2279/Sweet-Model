@@ -1,1 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sweet-Model</title>
 
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #111827, #312e81);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+
+    .login-box {
+      width: 90%;
+      max-width: 380px;
+      padding: 30px 25px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 20px;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+      text-align: center;
+    }
+
+    .logo {
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: #d1d5db;
+      margin-bottom: 25px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 10px;
+      outline: none;
+      font-size: 15px;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 15px;
+      border: none;
+      border-radius: 10px;
+      background: #6366f1;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #4f46e5;
+    }
+
+    .role-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .role-buttons button {
+      margin-top: 0;
+      background: #374151;
+    }
+
+    .role-buttons button.active {
+      background: #6366f1;
+    }
+
+    #message {
+      margin-top: 15px;
+      color: #fca5a5;
+      min-height: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="login-box">
+
+    <div class="logo">🎬</div>
+
+    <h1>Sweet-Model</h1>
+
+    <p class="subtitle">Reels Management App</p>
+
+    <div class="role-buttons">
+      <button id="memberBtn" class="active" onclick="selectRole('member')">
+        Member
+      </button>
+
+      <button id="adminBtn" onclick="selectRole('admin')">
+        Admin
+      </button>
+    </div>
+
+    <input
+      type="email"
+      id="email"
+      placeholder="Email"
+    >
+
+    <input
+      type="password"
+      id="password"
+      placeholder="Password"
+    >
+
+    <button onclick="login()">Login</button>
+
+    <p id="message"></p>
+
+  </div>
+
+  <script>
+
+    let selectedRole = "member";
+
+    function selectRole(role) {
+
+      selectedRole = role;
+
+      document.getElementById("memberBtn")
+        .classList.toggle("active", role === "member");
+
+      document.getElementById("adminBtn")
+        .classList.toggle("active", role === "admin");
+    }
+
+    function login() {
+
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const message = document.getElementById("message");
+
+      if (!email || !password) {
+        message.textContent = "Please enter email and password.";
+        return;
+      }
+
+      message.style.color = "#86efac";
+      message.textContent =
+        "Login system will be connected next.";
+    }
+
+  </script>
+
+</body>
+  </html>
