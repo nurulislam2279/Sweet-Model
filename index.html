@@ -1,9 +1,9 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Sweet-Model</title> <style> * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; } body { min-height: 100vh; background: linear-gradient(135deg, #111827, #312e81); display: flex; justify-content: center; align-items: center; color: white; padding: 20px; } .login-box { width: 100%; max-width: 400px; padding: 30px 25px; background: rgba(255, 255, 255, 0.1); border-radius: 20px; backdrop-filter: blur(15px); box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3); text-align: center; } .logo { font-size: 50px; margin-bottom: 10px; } h1 { margin-bottom: 8px; font-size: 30px; } .subtitle { color: #d1d5db; margin-bottom: 25px; } .role-buttons { display: flex; gap: 10px; margin-bottom: 15px; } .role-buttons button { width: 50%; margin-top: 0; background: #374151; } .role-buttons button.active { background: #6366f1; } input { width: 100%; padding: 14px; margin: 8px 0; border: none; border-radius: 10px; outline: none; font-size: 15px; } .login-btn { width: 100%; padding: 14px; margin-top: 15px; border: none; border-radius: 10px; background: #6366f1; color: white; font-size: 16px; font-weight: bold; cursor: pointer; } .login-btn:hover { background: #4f46e5; } #message { margin-top: 15px; min-height: 20px; font-size: 14px; } .demo-info { margin-top: 20px; padding: 12px; border-radius: 10px; background: rgba(0, 0, 0, 0.2); color: #d1d5db; font-size: 12px; line-height: 1.6; } </style> </head> <body> <div class="login-box"> <div class="logo">🎬</div> <h1>Sweet-Model</h1> <p class="subtitle">Reels Management App</p> <div class="role-buttons"> <button id="memberBtn" class="login-btn active" onclick="selectRole('member')"> Member </button> <button id="adminBtn" class="login-btn" onclick="selectRole('admin')"> Admin </button> </div> <input type="email" id="email" placeholder="Email" autocomplete="email" > <input type="password" id="password" placeholder="Password" autocomplete="current-password" > <button class="login-btn" onclick="login()"> Login </button> <p id="message"></p> <div class="demo-info"> Demo login<br> Member: member@sweetmodel.com / 123456<br> Admin: admin@sweetmodel.com / 123456 </div> </div> <script> let selectedRole = "member"; function selectRole(role) { selectedRole = role; document .getElementById("memberBtn") .classList.toggle("active", role === "member"); document .getElementById("adminBtn") .classList.toggle("active", role === "admin"); document.getElementById("message").textContent = ""; } function login() { const email = document .getElementById("email") .value .trim() .toLowerCase(); const password = document .getElementById("password") .value; const message = document.getElementById("message"); if (!email || !password) { message.style.color = "#fca5a5"; message.textContent = "Please enter email and password."; return; } // Demo Member Login if ( selectedRole === "member" && email === "member@sweetmodel.com" && password === "123456" ) { message.style.color = "#86efac"; message.textContent = "Member login successful!"; setTimeout(function () { window.location.href = "member.html"; }, 700); return; } // Demo Admin Login if ( selectedRole === "admin" && email === "admin@sweetmodel.com" && password === "123456" ) { message.style.color = "#86efac"; message.textContent = "Admin login successful!"; setTimeout(function () { window.location.href = "admin.html"; }, 700); return; } message.style.color = "#fca5a5"; message.textContent = "Invalid email, password, or selected role."; } </script> </body> </html><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sweet-Model</title>
+  <title>Sweet-Model - Login</title>
 
   <style>
     * {
@@ -15,97 +15,86 @@
 
     body {
       min-height: 100vh;
-      background: linear-gradient(135deg, #111827, #312e81);
       display: flex;
       justify-content: center;
       align-items: center;
-      color: white;
+      background: linear-gradient(135deg, #111827, #4f46e5);
       padding: 20px;
     }
 
     .login-box {
       width: 100%;
       max-width: 400px;
-      padding: 30px 25px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      backdrop-filter: blur(15px);
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-      text-align: center;
-    }
-
-    .logo {
-      font-size: 50px;
-      margin-bottom: 10px;
+      background: white;
+      padding: 30px;
+      border-radius: 18px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.25);
     }
 
     h1 {
+      text-align: center;
       margin-bottom: 8px;
-      font-size: 30px;
+      color: #111827;
     }
 
     .subtitle {
-      color: #d1d5db;
+      text-align: center;
+      color: #6b7280;
       margin-bottom: 25px;
     }
 
-    .role-buttons {
+    .roles {
       display: flex;
       gap: 10px;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
     }
 
-    .role-buttons button {
-      width: 50%;
-      margin-top: 0;
-      background: #374151;
+    .role-btn {
+      flex: 1;
+      padding: 12px;
+      border: 2px solid #4f46e5;
+      background: white;
+      color: #4f46e5;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
     }
 
-    .role-buttons button.active {
-      background: #6366f1;
+    .role-btn.active {
+      background: #4f46e5;
+      color: white;
     }
 
     input {
       width: 100%;
-      padding: 14px;
-      margin: 8px 0;
-      border: none;
+      padding: 13px;
+      margin-bottom: 15px;
+      border: 1px solid #d1d5db;
       border-radius: 10px;
-      outline: none;
       font-size: 15px;
     }
 
     .login-btn {
       width: 100%;
       padding: 14px;
-      margin-top: 15px;
       border: none;
       border-radius: 10px;
-      background: #6366f1;
+      background: #4f46e5;
       color: white;
       font-size: 16px;
       font-weight: bold;
       cursor: pointer;
     }
 
-    .login-btn:hover {
-      background: #4f46e5;
+    .login-btn:disabled {
+      opacity: 0.6;
     }
 
     #message {
       margin-top: 15px;
-      min-height: 20px;
+      text-align: center;
       font-size: 14px;
-    }
-
-    .demo-info {
-      margin-top: 20px;
-      padding: 12px;
-      border-radius: 10px;
-      background: rgba(0, 0, 0, 0.2);
-      color: #d1d5db;
-      font-size: 12px;
-      line-height: 1.6;
+      color: #dc2626;
     }
   </style>
 </head>
@@ -113,27 +102,12 @@
 <body>
 
   <div class="login-box">
-
-    <div class="logo">🎬</div>
-
-    <h1>Sweet-Model</h1>
-
+    <h1>🎬 Sweet-Model</h1>
     <p class="subtitle">Reels Management App</p>
 
-    <div class="role-buttons">
-      <button
-        id="memberBtn"
-        class="login-btn active"
-        onclick="selectRole('member')">
-        Member
-      </button>
-
-      <button
-        id="adminBtn"
-        class="login-btn"
-        onclick="selectRole('admin')">
-        Admin
-      </button>
+    <div class="roles">
+      <button class="role-btn active" id="memberBtn">Member</button>
+      <button class="role-btn" id="adminBtn">Admin</button>
     </div>
 
     <input
@@ -150,96 +124,173 @@
       autocomplete="current-password"
     >
 
-    <button class="login-btn" onclick="login()">
+    <button class="login-btn" id="loginBtn">
       Login
     </button>
 
-    <p id="message"></p>
-
-    <div class="demo-info">
-      Demo login<br>
-      Member: member@sweetmodel.com / 123456<br>
-      Admin: admin@sweetmodel.com / 123456
-    </div>
-
+    <div id="message"></div>
   </div>
 
-  <script>
+  <script type="module">
+
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+    import {
+      getAuth,
+      signInWithEmailAndPassword
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+    import {
+      getFirestore,
+      doc,
+      getDoc
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyD15DDy67p9Sk68zBOCO2yA8orRt69vMVQ",
+      authDomain: "sweet-model.firebaseapp.com",
+      projectId: "sweet-model",
+      storageBucket: "sweet-model.firebasestorage.app",
+      messagingSenderId: "977088623623",
+      appId: "1:977088623623:web:561067fe266809b1a466a2",
+      measurementId: "G-05EK5P5S8J"
+    };
+
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
 
     let selectedRole = "member";
 
-    function selectRole(role) {
 
-      selectedRole = role;
+    const memberBtn = document.getElementById("memberBtn");
+    const adminBtn = document.getElementById("adminBtn");
+    const loginBtn = document.getElementById("loginBtn");
+    const message = document.getElementById("message");
 
-      document
-        .getElementById("memberBtn")
-        .classList.toggle("active", role === "member");
 
-      document
-        .getElementById("adminBtn")
-        .classList.toggle("active", role === "admin");
+    // Role selection
+    memberBtn.addEventListener("click", () => {
+      selectedRole = "member";
 
-      document.getElementById("message").textContent = "";
-    }
+      memberBtn.classList.add("active");
+      adminBtn.classList.remove("active");
 
-    function login() {
+      message.textContent = "";
+    });
 
-      const email = document
-        .getElementById("email")
-        .value
-        .trim()
-        .toLowerCase();
 
-      const password = document
-        .getElementById("password")
-        .value;
+    adminBtn.addEventListener("click", () => {
+      selectedRole = "admin";
 
-      const message = document.getElementById("message");
+      adminBtn.classList.add("active");
+      memberBtn.classList.remove("active");
+
+      message.textContent = "";
+    });
+
+
+    // Login
+    loginBtn.addEventListener("click", async () => {
+
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+
 
       if (!email || !password) {
-        message.style.color = "#fca5a5";
-        message.textContent =
-          "Please enter email and password.";
+        message.textContent = "Please enter email and password.";
         return;
       }
 
-      // Demo Member Login
-      if (
-        selectedRole === "member" &&
-        email === "member@sweetmodel.com" &&
-        password === "123456"
-      ) {
-        message.style.color = "#86efac";
-        message.textContent = "Member login successful!";
 
-        setTimeout(function () {
-          window.location.href = "member.html";
-        }, 700);
+      loginBtn.disabled = true;
+      loginBtn.textContent = "Logging in...";
+      message.textContent = "";
 
-        return;
-      }
 
-      // Demo Admin Login
-      if (
-        selectedRole === "admin" &&
-        email === "admin@sweetmodel.com" &&
-        password === "123456"
-      ) {
-        message.style.color = "#86efac";
-        message.textContent = "Admin login successful!";
+      try {
 
-        setTimeout(function () {
+        const userCredential =
+          await signInWithEmailAndPassword(auth, email, password);
+
+        const user = userCredential.user;
+
+
+        // Get user's role from Firestore
+        const userDoc = await getDoc(
+          doc(db, "users", user.uid)
+        );
+
+
+        if (!userDoc.exists()) {
+
+          message.textContent =
+            "User role not found.";
+
+          await auth.signOut();
+
+          loginBtn.disabled = false;
+          loginBtn.textContent = "Login";
+
+          return;
+        }
+
+
+        const userData = userDoc.data();
+        const actualRole = userData.role;
+
+
+        // Check selected role
+        if (actualRole !== selectedRole) {
+
+          message.textContent =
+            "Wrong role selected.";
+
+          await auth.signOut();
+
+          loginBtn.disabled = false;
+          loginBtn.textContent = "Login";
+
+          return;
+        }
+
+
+        // Redirect
+        if (actualRole === "admin") {
+
           window.location.href = "admin.html";
-        }, 700);
 
-        return;
+        } else if (actualRole === "member") {
+
+          window.location.href = "member.html";
+
+        }
+
+      } catch (error) {
+
+        console.error(error);
+
+        if (error.code === "auth/invalid-credential") {
+          message.textContent =
+            "Email or password is incorrect.";
+        } else if (error.code === "auth/invalid-email") {
+          message.textContent =
+            "Please enter a valid email.";
+        } else {
+          message.textContent =
+            "Login failed. Please try again.";
+        }
+
+        loginBtn.disabled = false;
+        loginBtn.textContent = "Login";
       }
 
-      message.style.color = "#fca5a5";
-      message.textContent =
-        "Invalid email, password, or selected role.";
-    }
+    });
 
   </script>
 
