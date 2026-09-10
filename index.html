@@ -3,228 +3,399 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sweet-Model - Login</title>
+  <title>Sweet-Model</title>
 
   <style>
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
     }
 
     body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #29256b, #5148e5);
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(135deg, #111827, #4f46e5);
       padding: 20px;
     }
 
-    .login-box {
+    .box {
       width: 100%;
-      max-width: 400px;
+      max-width: 480px;
       background: white;
-      padding: 30px;
-      border-radius: 18px;
+      border-radius: 25px;
+      padding: 35px 30px;
       box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+      text-align: center;
+    }
+
+    .logo {
+      font-size: 45px;
     }
 
     h1 {
-      text-align: center;
-      margin-bottom: 8px;
-      color: #111827;
+      margin: 5px 0;
+      color: #171b2b;
+      font-size: 36px;
     }
 
     .subtitle {
-      text-align: center;
-      color: #6b7280;
-      margin-bottom: 25px;
+      color: #777;
+      font-size: 20px;
+      margin-bottom: 30px;
     }
 
-    .roles {
+    .role-buttons {
       display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
+      gap: 12px;
+      margin-bottom: 25px;
     }
 
     .role-btn {
       flex: 1;
-      padding: 12px;
-      border: 2px solid #4f46e5;
+      padding: 16px;
+      border-radius: 15px;
+      border: 2px solid #5148e5;
       background: white;
-      color: #4f46e5;
-      border-radius: 10px;
-      cursor: pointer;
+      color: #5148e5;
+      font-size: 18px;
       font-weight: bold;
+      cursor: pointer;
     }
 
     .role-btn.active {
-      background: #4f46e5;
+      background: #5148e5;
       color: white;
     }
 
     input {
       width: 100%;
-      padding: 13px;
+      padding: 17px;
       margin-bottom: 15px;
-      border: 1px solid #d1d5db;
-      border-radius: 10px;
-      font-size: 15px;
+      border: 1px solid #ddd;
+      border-radius: 15px;
+      font-size: 17px;
+      outline: none;
     }
 
-    .login-btn {
+    input:focus {
+      border-color: #5148e5;
+    }
+
+    .main-btn {
       width: 100%;
-      padding: 14px;
+      padding: 17px;
       border: none;
-      border-radius: 10px;
-      background: #4f46e5;
+      border-radius: 15px;
+      background: #5148e5;
       color: white;
-      font-size: 16px;
+      font-size: 19px;
       font-weight: bold;
+      cursor: pointer;
+      margin-top: 5px;
+    }
+
+    .register-link {
+      margin-top: 22px;
+      color: #555;
+      font-size: 16px;
+    }
+
+    .register-link button {
+      border: none;
+      background: none;
+      color: #5148e5;
+      font-weight: bold;
+      font-size: 16px;
       cursor: pointer;
     }
 
-    .login-btn:disabled {
-      opacity: 0.6;
+    .back-btn {
+      border: none;
+      background: none;
+      color: #5148e5;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 20px;
     }
 
     #message {
-      margin-top: 15px;
-      text-align: center;
-      font-size: 14px;
-      color: #dc2626;
+      margin-top: 18px;
+      color: #d32f2f;
+      font-weight: bold;
+    }
+
+    .hidden {
+      display: none;
     }
   </style>
 </head>
 
 <body>
 
-  <div class="login-box">
-    <h1>🎬 Sweet-Model</h1>
-    <p class="subtitle">Reels Management App</p>
+  <!-- LOGIN -->
+  <div class="box" id="loginBox">
 
-    <div class="roles">
-      <button class="role-btn active" id="memberBtn">Member</button>
-      <button class="role-btn" id="adminBtn">Admin</button>
+    <div class="logo">🎬</div>
+    <h1>Sweet-Model</h1>
+    <div class="subtitle">Reels Management App</div>
+
+    <div class="role-buttons">
+      <button class="role-btn active" id="memberLoginBtn">
+        Member
+      </button>
+
+      <button class="role-btn" id="adminLoginBtn">
+        Admin
+      </button>
     </div>
 
     <input
       type="email"
-      id="email"
+      id="loginEmail"
       placeholder="Email"
-      autocomplete="email"
     >
 
     <input
       type="password"
-      id="password"
+      id="loginPassword"
       placeholder="Password"
-      autocomplete="current-password"
     >
 
-    <button class="login-btn" id="loginBtn">
+    <button class="main-btn" id="loginBtn">
       Login
     </button>
 
-    <div id="message"></div>
+    <div class="register-link">
+      Don't have an account?
+      <button id="showRegisterBtn">
+        Register Account
+      </button>
+    </div>
+
+    <div id="loginMessage"></div>
+
   </div>
+
+
+  <!-- REGISTER -->
+  <div class="box hidden" id="registerBox">
+
+    <div class="logo">📝</div>
+
+    <h1>Create Account</h1>
+
+    <div class="subtitle">
+      Sweet-Model Member Registration
+    </div>
+
+    <input
+      type="text"
+      id="registerName"
+      placeholder="Full Name"
+    >
+
+    <input
+      type="email"
+      id="registerEmail"
+      placeholder="Email"
+    >
+
+    <input
+      type="password"
+      id="registerPassword"
+      placeholder="Password"
+    >
+
+    <input
+      type="password"
+      id="registerConfirmPassword"
+      placeholder="Confirm Password"
+    >
+
+    <button class="main-btn" id="registerBtn">
+      Register
+    </button>
+
+    <button class="back-btn" id="backLoginBtn">
+      ← Back to Login
+    </button>
+
+    <div id="registerMessage"></div>
+
+  </div>
+
 
   <script type="module">
 
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+    import {
+      initializeApp
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
     import {
       getAuth,
-      signInWithEmailAndPassword
+      signInWithEmailAndPassword,
+      createUserWithEmailAndPassword
     } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
     import {
       getFirestore,
       doc,
-      getDoc
+      getDoc,
+      setDoc
     } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
-    // Firebase configuration
+    // Firebase Configuration
     const firebaseConfig = {
-      apiKey: "AIzaSyD15DDy67p9Sk68zBOCO2yA8orRt69vMVQ",
+
+      /*
+       IMPORTANT:
+       এখানে আপনার আগের index.html-এর
+       apiKey বসাবেন।
+      */
+
+      apiKey: "YOUR_EXISTING_API_KEY",
+
       authDomain: "sweet-model.firebaseapp.com",
+
       projectId: "sweet-model",
+
       storageBucket: "sweet-model.firebasestorage.app",
+
       messagingSenderId: "977088623623",
+
       appId: "1:977088623623:web:561067fe266809b1a466a2",
+
       measurementId: "G-05EK5P5S8J"
     };
 
 
-    // Initialize Firebase
     const app = initializeApp(firebaseConfig);
+
     const auth = getAuth(app);
+
     const db = getFirestore(app);
 
 
-    let selectedRole = "member";
+    let selectedLoginRole = "member";
 
 
-    const memberBtn = document.getElementById("memberBtn");
-    const adminBtn = document.getElementById("adminBtn");
-    const loginBtn = document.getElementById("loginBtn");
-    const message = document.getElementById("message");
+    // Elements
+    const loginBox = document.getElementById("loginBox");
+    const registerBox = document.getElementById("registerBox");
+
+    const memberLoginBtn =
+      document.getElementById("memberLoginBtn");
+
+    const adminLoginBtn =
+      document.getElementById("adminLoginBtn");
+
+    const showRegisterBtn =
+      document.getElementById("showRegisterBtn");
+
+    const backLoginBtn =
+      document.getElementById("backLoginBtn");
+
+    const loginBtn =
+      document.getElementById("loginBtn");
+
+    const registerBtn =
+      document.getElementById("registerBtn");
 
 
-    // Role selection
-    memberBtn.addEventListener("click", () => {
-      selectedRole = "member";
+    // Login role selection
 
-      memberBtn.classList.add("active");
-      adminBtn.classList.remove("active");
+    memberLoginBtn.addEventListener("click", () => {
 
-      message.textContent = "";
+      selectedLoginRole = "member";
+
+      memberLoginBtn.classList.add("active");
+
+      adminLoginBtn.classList.remove("active");
     });
 
 
-    adminBtn.addEventListener("click", () => {
-      selectedRole = "admin";
+    adminLoginBtn.addEventListener("click", () => {
 
-      adminBtn.classList.add("active");
-      memberBtn.classList.remove("active");
+      selectedLoginRole = "admin";
 
-      message.textContent = "";
+      adminLoginBtn.classList.add("active");
+
+      memberLoginBtn.classList.remove("active");
     });
 
 
-    // Login
+    // Show Register
+
+    showRegisterBtn.addEventListener("click", () => {
+
+      loginBox.classList.add("hidden");
+
+      registerBox.classList.remove("hidden");
+
+      document.getElementById("registerMessage").textContent = "";
+    });
+
+
+    // Back to Login
+
+    backLoginBtn.addEventListener("click", () => {
+
+      registerBox.classList.add("hidden");
+
+      loginBox.classList.remove("hidden");
+
+      document.getElementById("loginMessage").textContent = "";
+    });
+
+
+    // LOGIN
+
     loginBtn.addEventListener("click", async () => {
 
-      const email = document.getElementById("email").value.trim();
-      const password = document.getElementById("password").value;
+      const email =
+        document.getElementById("loginEmail").value.trim();
+
+      const password =
+        document.getElementById("loginPassword").value;
+
+      const message =
+        document.getElementById("loginMessage");
+
+
+      message.textContent = "";
 
 
       if (!email || !password) {
-        message.textContent = "Please enter email and password.";
+
+        message.textContent =
+          "Please enter email and password.";
+
         return;
       }
-
-
-      loginBtn.disabled = true;
-      loginBtn.textContent = "Logging in...";
-      message.textContent = "";
 
 
       try {
 
         const userCredential =
-          await signInWithEmailAndPassword(auth, email, password);
+          await signInWithEmailAndPassword(
+            auth,
+            email,
+            password
+          );
+
 
         const user = userCredential.user;
 
 
-        // Get user's role from Firestore
-        const userDoc = await getDoc(
-          doc(db, "users", user.uid)
-        );
+        const userDoc =
+          await getDoc(
+            doc(db, "users", user.uid)
+          );
 
 
         if (!userDoc.exists()) {
@@ -232,40 +403,28 @@
           message.textContent =
             "User role not found.";
 
-          await auth.signOut();
-
-          loginBtn.disabled = false;
-          loginBtn.textContent = "Login";
-
           return;
         }
 
 
-        const userData = userDoc.data();
-        const actualRole = userData.role;
+        const role =
+          userDoc.data().role;
 
 
-        // Check selected role
-        if (actualRole !== selectedRole) {
+        if (role !== selectedLoginRole) {
 
           message.textContent =
-            "Wrong role selected.";
-
-          await auth.signOut();
-
-          loginBtn.disabled = false;
-          loginBtn.textContent = "Login";
+            "Wrong account type.";
 
           return;
         }
 
 
-        // Redirect
-        if (actualRole === "admin") {
+        if (role === "admin") {
 
           window.location.href = "admin.html";
 
-        } else if (actualRole === "member") {
+        } else {
 
           window.location.href = "member.html";
 
@@ -275,19 +434,108 @@
 
         console.error(error);
 
-        if (error.code === "auth/invalid-credential") {
-          message.textContent =
-            "Email or password is incorrect.";
-        } else if (error.code === "auth/invalid-email") {
-          message.textContent =
-            "Please enter a valid email.";
-        } else {
-          message.textContent =
-            "Login failed. Please try again.";
-        }
+        message.textContent =
+          "Login failed: " + error.message;
+      }
 
-        loginBtn.disabled = false;
-        loginBtn.textContent = "Login";
+    });
+
+
+    // REGISTER MEMBER
+
+    registerBtn.addEventListener("click", async () => {
+
+      const name =
+        document.getElementById("registerName").value.trim();
+
+      const email =
+        document.getElementById("registerEmail").value.trim();
+
+      const password =
+        document.getElementById("registerPassword").value;
+
+      const confirmPassword =
+        document.getElementById("registerConfirmPassword").value;
+
+      const message =
+        document.getElementById("registerMessage");
+
+
+      message.textContent = "";
+
+
+      if (!name || !email || !password || !confirmPassword) {
+
+        message.textContent =
+          "Please fill in all fields.";
+
+        return;
+      }
+
+
+      if (password.length < 6) {
+
+        message.textContent =
+          "Password must be at least 6 characters.";
+
+        return;
+      }
+
+
+      if (password !== confirmPassword) {
+
+        message.textContent =
+          "Passwords do not match.";
+
+        return;
+      }
+
+
+      try {
+
+        const userCredential =
+          await createUserWithEmailAndPassword(
+            auth,
+            email,
+            password
+          );
+
+
+        const user =
+          userCredential.user;
+
+
+        await setDoc(
+          doc(db, "users", user.uid),
+          {
+            name: name,
+            email: email,
+            role: "member"
+          }
+        );
+
+
+        message.style.color = "green";
+
+        message.textContent =
+          "Account created successfully!";
+
+
+        setTimeout(() => {
+
+          window.location.href = "member.html";
+
+        }, 1200);
+
+
+      } catch (error) {
+
+        console.error(error);
+
+        message.style.color = "#d32f2f";
+
+        message.textContent =
+          "Registration failed: " + error.message;
       }
 
     });
@@ -295,4 +543,4 @@
   </script>
 
 </body>
-  </html>
+</html>
