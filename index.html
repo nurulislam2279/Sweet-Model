@@ -26,7 +26,7 @@
       max-width: 480px;
       background: white;
       border-radius: 25px;
-      padding: 35px 30px;
+      padding: 32px 28px;
       box-shadow: 0 15px 40px rgba(0,0,0,0.25);
       text-align: center;
     }
@@ -38,45 +38,48 @@
     h1 {
       margin: 5px 0;
       color: #171b2b;
-      font-size: 36px;
+      font-size: 34px;
     }
 
     .subtitle {
       color: #777;
-      font-size: 20px;
-      margin-bottom: 30px;
-    }
-
-    .role-buttons {
-      display: flex;
-      gap: 12px;
+      font-size: 18px;
       margin-bottom: 25px;
     }
 
-    .role-btn {
+    .role-buttons,
+    .method-buttons {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .role-btn,
+    .method-btn {
       flex: 1;
-      padding: 16px;
-      border-radius: 15px;
+      padding: 14px 8px;
+      border-radius: 14px;
       border: 2px solid #5148e5;
       background: white;
       color: #5148e5;
-      font-size: 18px;
+      font-size: 16px;
       font-weight: bold;
       cursor: pointer;
     }
 
-    .role-btn.active {
+    .role-btn.active,
+    .method-btn.active {
       background: #5148e5;
       color: white;
     }
 
     input {
       width: 100%;
-      padding: 17px;
-      margin-bottom: 15px;
+      padding: 16px;
+      margin-bottom: 13px;
       border: 1px solid #ddd;
-      border-radius: 15px;
-      font-size: 17px;
+      border-radius: 14px;
+      font-size: 16px;
       outline: none;
     }
 
@@ -86,102 +89,170 @@
 
     .main-btn {
       width: 100%;
-      padding: 17px;
+      padding: 16px;
       border: none;
-      border-radius: 15px;
+      border-radius: 14px;
       background: #5148e5;
       color: white;
-      font-size: 19px;
+      font-size: 18px;
       font-weight: bold;
       cursor: pointer;
       margin-top: 5px;
     }
 
-    .register-link {
-      margin-top: 22px;
-      color: #555;
+    .secondary-btn {
+      width: 100%;
+      padding: 14px;
+      border: 2px solid #5148e5;
+      border-radius: 14px;
+      background: white;
+      color: #5148e5;
       font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
     }
 
-    .register-link button {
-      border: none;
-      background: none;
-      color: #5148e5;
-      font-weight: bold;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    .back-btn {
-      border: none;
-      background: none;
-      color: #5148e5;
-      font-weight: bold;
-      font-size: 16px;
-      cursor: pointer;
+    .switch {
       margin-top: 20px;
+      color: #555;
     }
 
-    #message {
-      margin-top: 18px;
-      color: #d32f2f;
+    .switch button {
+      border: none;
+      background: none;
+      color: #5148e5;
       font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .message {
+      margin-top: 15px;
+      font-weight: bold;
+      line-height: 1.5;
     }
 
     .hidden {
       display: none;
+    }
+
+    .note {
+      background: #f3f2ff;
+      padding: 12px;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      color: #555;
+      font-size: 14px;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- LOGIN -->
+  <!-- LOGIN PAGE -->
   <div class="box" id="loginBox">
 
     <div class="logo">🎬</div>
+
     <h1>Sweet-Model</h1>
-    <div class="subtitle">Reels Management App</div>
 
-    <div class="role-buttons">
-      <button class="role-btn active" id="memberLoginBtn">
-        Member
-      </button>
-
-      <button class="role-btn" id="adminLoginBtn">
-        Admin
-      </button>
+    <div class="subtitle">
+      Reels Management App
     </div>
 
-    <input
-      type="email"
-      id="loginEmail"
-      placeholder="Email"
-    >
+    <div class="role-buttons">
 
-    <input
-      type="password"
-      id="loginPassword"
-      placeholder="Password"
-    >
+      <button class="role-btn active" id="memberLoginRole">
+        👤 Member
+      </button>
 
-    <button class="main-btn" id="loginBtn">
-      Login
-    </button>
+      <button class="role-btn" id="adminLoginRole">
+        👑 Admin
+      </button>
 
-    <div class="register-link">
+    </div>
+
+    <div class="method-buttons">
+
+      <button class="method-btn active" id="emailLoginMethod">
+        📧 Email
+      </button>
+
+      <button class="method-btn" id="phoneLoginMethod">
+        📱 Phone
+      </button>
+
+    </div>
+
+    <!-- EMAIL LOGIN -->
+    <div id="emailLoginArea">
+
+      <input
+        type="email"
+        id="loginEmail"
+        placeholder="Email"
+      >
+
+      <input
+        type="password"
+        id="loginPassword"
+        placeholder="Password"
+      >
+
+      <button class="main-btn" id="emailLoginBtn">
+        Login
+      </button>
+
+    </div>
+
+    <!-- PHONE LOGIN -->
+    <div id="phoneLoginArea" class="hidden">
+
+      <input
+        type="tel"
+        id="loginPhone"
+        placeholder="+8801XXXXXXXXX"
+      >
+
+      <div id="loginRecaptcha"></div>
+
+      <button class="main-btn" id="sendLoginOtpBtn">
+        Send OTP
+      </button>
+
+      <div id="loginOtpArea" class="hidden">
+
+        <input
+          type="text"
+          id="loginOtp"
+          placeholder="Enter OTP"
+        >
+
+        <button class="main-btn" id="verifyLoginOtpBtn">
+          Verify & Login
+        </button>
+
+      </div>
+
+    </div>
+
+    <div class="switch">
+
       Don't have an account?
+
       <button id="showRegisterBtn">
         Register Account
       </button>
+
     </div>
 
-    <div id="loginMessage"></div>
+    <div class="message" id="loginMessage"></div>
 
   </div>
 
 
-  <!-- REGISTER -->
+  <!-- REGISTER PAGE -->
   <div class="box hidden" id="registerBox">
 
     <div class="logo">📝</div>
@@ -189,7 +260,39 @@
     <h1>Create Account</h1>
 
     <div class="subtitle">
-      Sweet-Model Member Registration
+      Sweet-Model Registration
+    </div>
+
+    <!-- ACCOUNT TYPE -->
+
+    <div class="role-buttons">
+
+      <button class="role-btn active" id="memberRegisterRole">
+        👤 Member
+      </button>
+
+      <button class="role-btn" id="adminRegisterRole">
+        👑 Admin Request
+      </button>
+
+    </div>
+
+    <div class="note" id="adminNote">
+      Admin Request করলে আপনার আবেদন একজন existing Admin review করবেন।
+    </div>
+
+    <!-- REGISTER METHOD -->
+
+    <div class="method-buttons">
+
+      <button class="method-btn active" id="emailRegisterMethod">
+        📧 Email
+      </button>
+
+      <button class="method-btn" id="phoneRegisterMethod">
+        📱 Phone
+      </button>
+
     </div>
 
     <input
@@ -198,33 +301,71 @@
       placeholder="Full Name"
     >
 
-    <input
-      type="email"
-      id="registerEmail"
-      placeholder="Email"
-    >
+    <!-- EMAIL REGISTER -->
 
-    <input
-      type="password"
-      id="registerPassword"
-      placeholder="Password"
-    >
+    <div id="emailRegisterArea">
 
-    <input
-      type="password"
-      id="registerConfirmPassword"
-      placeholder="Confirm Password"
-    >
+      <input
+        type="email"
+        id="registerEmail"
+        placeholder="Email"
+      >
 
-    <button class="main-btn" id="registerBtn">
-      Register
-    </button>
+      <input
+        type="password"
+        id="registerPassword"
+        placeholder="Password"
+      >
 
-    <button class="back-btn" id="backLoginBtn">
+      <input
+        type="password"
+        id="registerConfirmPassword"
+        placeholder="Confirm Password"
+      >
+
+      <button class="main-btn" id="emailRegisterBtn">
+        Register
+      </button>
+
+    </div>
+
+    <!-- PHONE REGISTER -->
+
+    <div id="phoneRegisterArea" class="hidden">
+
+      <input
+        type="tel"
+        id="registerPhone"
+        placeholder="+8801XXXXXXXXX"
+      >
+
+      <div id="registerRecaptcha"></div>
+
+      <button class="main-btn" id="sendRegisterOtpBtn">
+        Send OTP
+      </button>
+
+      <div id="registerOtpArea" class="hidden">
+
+        <input
+          type="text"
+          id="registerOtp"
+          placeholder="Enter OTP"
+        >
+
+        <button class="main-btn" id="verifyRegisterOtpBtn">
+          Verify & Create Account
+        </button>
+
+      </div>
+
+    </div>
+
+    <button class="secondary-btn" id="backLoginBtn">
       ← Back to Login
     </button>
 
-    <div id="registerMessage"></div>
+    <div class="message" id="registerMessage"></div>
 
   </div>
 
@@ -238,26 +379,34 @@
     import {
       getAuth,
       signInWithEmailAndPassword,
-      createUserWithEmailAndPassword
+      createUserWithEmailAndPassword,
+      RecaptchaVerifier,
+      signInWithPhoneNumber
     } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
     import {
       getFirestore,
       doc,
       getDoc,
-      setDoc
+      setDoc,
+      addDoc,
+      collection
     } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
-    // Firebase Configuration
+    // =====================================================
+    // FIREBASE CONFIG
+    // =====================================================
+
     const firebaseConfig = {
 
       /*
        IMPORTANT:
-       এখানে আপনার আগের index.html-এর
-       apiKey বসাবেন।
+       YOUR_EXISTING_API_KEY এর জায়গায়
+       আপনার আগের index.html-এর apiKey বসাবেন।
       */
-      apiKey: "AIzaSyD15DDy67p9Sk68zBOCO2yA8orRt69vMVQ",
+
+      apiKey: "YOUR_EXISTING_API_KEY",
 
       authDomain: "sweet-model.firebaseapp.com",
 
@@ -280,264 +429,774 @@
     const db = getFirestore(app);
 
 
-    let selectedLoginRole = "member";
+    // =====================================================
+    // VARIABLES
+    // =====================================================
+
+    let loginRole = "member";
+
+    let registerRole = "member";
+
+    let loginMethod = "email";
+
+    let registerMethod = "email";
+
+    let loginConfirmationResult = null;
+
+    let registerConfirmationResult = null;
+
+    let loginRecaptcha = null;
+
+    let registerRecaptcha = null;
 
 
-    // Elements
-    const loginBox = document.getElementById("loginBox");
-    const registerBox = document.getElementById("registerBox");
+    // =====================================================
+    // ELEMENTS
+    // =====================================================
 
-    const memberLoginBtn =
-      document.getElementById("memberLoginBtn");
+    const loginBox =
+      document.getElementById("loginBox");
 
-    const adminLoginBtn =
-      document.getElementById("adminLoginBtn");
-
-    const showRegisterBtn =
-      document.getElementById("showRegisterBtn");
-
-    const backLoginBtn =
-      document.getElementById("backLoginBtn");
-
-    const loginBtn =
-      document.getElementById("loginBtn");
-
-    const registerBtn =
-      document.getElementById("registerBtn");
+    const registerBox =
+      document.getElementById("registerBox");
 
 
-    // Login role selection
+    // =====================================================
+    // LOGIN ROLE
+    // =====================================================
 
-    memberLoginBtn.addEventListener("click", () => {
+    document
+      .getElementById("memberLoginRole")
+      .onclick = () => {
 
-      selectedLoginRole = "member";
+        loginRole = "member";
 
-      memberLoginBtn.classList.add("active");
+        document
+          .getElementById("memberLoginRole")
+          .classList.add("active");
 
-      adminLoginBtn.classList.remove("active");
-    });
-
-
-    adminLoginBtn.addEventListener("click", () => {
-
-      selectedLoginRole = "admin";
-
-      adminLoginBtn.classList.add("active");
-
-      memberLoginBtn.classList.remove("active");
-    });
+        document
+          .getElementById("adminLoginRole")
+          .classList.remove("active");
+      };
 
 
-    // Show Register
+    document
+      .getElementById("adminLoginRole")
+      .onclick = () => {
 
-    showRegisterBtn.addEventListener("click", () => {
+        loginRole = "admin";
 
-      loginBox.classList.add("hidden");
+        document
+          .getElementById("adminLoginRole")
+          .classList.add("active");
 
-      registerBox.classList.remove("hidden");
-
-      document.getElementById("registerMessage").textContent = "";
-    });
-
-
-    // Back to Login
-
-    backLoginBtn.addEventListener("click", () => {
-
-      registerBox.classList.add("hidden");
-
-      loginBox.classList.remove("hidden");
-
-      document.getElementById("loginMessage").textContent = "";
-    });
+        document
+          .getElementById("memberLoginRole")
+          .classList.remove("active");
+      };
 
 
-    // LOGIN
+    // =====================================================
+    // LOGIN METHOD
+    // =====================================================
 
-    loginBtn.addEventListener("click", async () => {
+    document
+      .getElementById("emailLoginMethod")
+      .onclick = () => {
 
-      const email =
-        document.getElementById("loginEmail").value.trim();
+        loginMethod = "email";
 
-      const password =
-        document.getElementById("loginPassword").value;
+        document
+          .getElementById("emailLoginMethod")
+          .classList.add("active");
 
-      const message =
-        document.getElementById("loginMessage");
+        document
+          .getElementById("phoneLoginMethod")
+          .classList.remove("active");
 
+        document
+          .getElementById("emailLoginArea")
+          .classList.remove("hidden");
 
-      message.textContent = "";
-
-
-      if (!email || !password) {
-
-        message.textContent =
-          "Please enter email and password.";
-
-        return;
-      }
+        document
+          .getElementById("phoneLoginArea")
+          .classList.add("hidden");
+      };
 
 
-      try {
+    document
+      .getElementById("phoneLoginMethod")
+      .onclick = () => {
 
-        const userCredential =
-          await signInWithEmailAndPassword(
-            auth,
-            email,
-            password
+        loginMethod = "phone";
+
+        document
+          .getElementById("phoneLoginMethod")
+          .classList.add("active");
+
+        document
+          .getElementById("emailLoginMethod")
+          .classList.remove("active");
+
+        document
+          .getElementById("phoneLoginArea")
+          .classList.remove("hidden");
+
+        document
+          .getElementById("emailLoginArea")
+          .classList.add("hidden");
+
+        setupLoginRecaptcha();
+      };
+
+
+    // =====================================================
+    // REGISTER ROLE
+    // =====================================================
+
+    document
+      .getElementById("memberRegisterRole")
+      .onclick = () => {
+
+        registerRole = "member";
+
+        document
+          .getElementById("memberRegisterRole")
+          .classList.add("active");
+
+        document
+          .getElementById("adminRegisterRole")
+          .classList.remove("active");
+
+        document
+          .getElementById("adminNote")
+          .textContent =
+          "আপনি সরাসরি Member account তৈরি করতে পারবেন।";
+      };
+
+
+    document
+      .getElementById("adminRegisterRole")
+      .onclick = () => {
+
+        registerRole = "admin_request";
+
+        document
+          .getElementById("adminRegisterRole")
+          .classList.add("active");
+
+        document
+          .getElementById("memberRegisterRole")
+          .classList.remove("active");
+
+        document
+          .getElementById("adminNote")
+          .textContent =
+          "Admin Request করলে আপনার আবেদন একজন existing Admin review করবেন।";
+      };
+
+
+    // =====================================================
+    // REGISTER METHOD
+    // =====================================================
+
+    document
+      .getElementById("emailRegisterMethod")
+      .onclick = () => {
+
+        registerMethod = "email";
+
+        document
+          .getElementById("emailRegisterMethod")
+          .classList.add("active");
+
+        document
+          .getElementById("phoneRegisterMethod")
+          .classList.remove("active");
+
+        document
+          .getElementById("emailRegisterArea")
+          .classList.remove("hidden");
+
+        document
+          .getElementById("phoneRegisterArea")
+          .classList.add("hidden");
+      };
+
+
+    document
+      .getElementById("phoneRegisterMethod")
+      .onclick = () => {
+
+        registerMethod = "phone";
+
+        document
+          .getElementById("phoneRegisterMethod")
+          .classList.add("active");
+
+        document
+          .getElementById("emailRegisterMethod")
+          .classList.remove("active");
+
+        document
+          .getElementById("phoneRegisterArea")
+          .classList.remove("hidden");
+
+        document
+          .getElementById("emailRegisterArea")
+          .classList.add("hidden");
+
+        setupRegisterRecaptcha();
+      };
+
+
+    // =====================================================
+    // SHOW REGISTER
+    // =====================================================
+
+    document
+      .getElementById("showRegisterBtn")
+      .onclick = () => {
+
+        loginBox.classList.add("hidden");
+
+        registerBox.classList.remove("hidden");
+
+        document
+          .getElementById("loginMessage")
+          .textContent = "";
+      };
+
+
+    // =====================================================
+    // BACK LOGIN
+    // =====================================================
+
+    document
+      .getElementById("backLoginBtn")
+      .onclick = () => {
+
+        registerBox.classList.add("hidden");
+
+        loginBox.classList.remove("hidden");
+
+        document
+          .getElementById("registerMessage")
+          .textContent = "";
+      };
+
+
+    // =====================================================
+    // EMAIL LOGIN
+    // =====================================================
+
+    document
+      .getElementById("emailLoginBtn")
+      .onclick = async () => {
+
+        const email =
+          document
+            .getElementById("loginEmail")
+            .value
+            .trim();
+
+        const password =
+          document
+            .getElementById("loginPassword")
+            .value;
+
+        const message =
+          document.getElementById("loginMessage");
+
+        message.textContent = "";
+
+        try {
+
+          const credential =
+            await signInWithEmailAndPassword(
+              auth,
+              email,
+              password
+            );
+
+          await checkUserRole(
+            credential.user.uid,
+            message
           );
 
+        } catch (error) {
 
-        const user = userCredential.user;
-
-
-        const userDoc =
-          await getDoc(
-            doc(db, "users", user.uid)
-          );
-
-
-        if (!userDoc.exists()) {
+          console.error(error);
 
           message.textContent =
-            "User role not found.";
-
-          return;
+            "Login failed: " + error.message;
         }
+      };
 
 
-        const role =
-          userDoc.data().role;
+    // =====================================================
+    // CHECK USER ROLE
+    // =====================================================
 
+    async function checkUserRole(uid, message) {
 
-        if (role !== selectedLoginRole) {
-
-          message.textContent =
-            "Wrong account type.";
-
-          return;
-        }
-
-
-        if (role === "admin") {
-
-          window.location.href = "admin.html";
-
-        } else {
-
-          window.location.href = "member.html";
-
-        }
-
-      } catch (error) {
-
-        console.error(error);
-
-        message.textContent =
-          "Login failed: " + error.message;
-      }
-
-    });
-
-
-    // REGISTER MEMBER
-
-    registerBtn.addEventListener("click", async () => {
-
-      const name =
-        document.getElementById("registerName").value.trim();
-
-      const email =
-        document.getElementById("registerEmail").value.trim();
-
-      const password =
-        document.getElementById("registerPassword").value;
-
-      const confirmPassword =
-        document.getElementById("registerConfirmPassword").value;
-
-      const message =
-        document.getElementById("registerMessage");
-
-
-      message.textContent = "";
-
-
-      if (!name || !email || !password || !confirmPassword) {
-
-        message.textContent =
-          "Please fill in all fields.";
-
-        return;
-      }
-
-
-      if (password.length < 6) {
-
-        message.textContent =
-          "Password must be at least 6 characters.";
-
-        return;
-      }
-
-
-      if (password !== confirmPassword) {
-
-        message.textContent =
-          "Passwords do not match.";
-
-        return;
-      }
-
-
-      try {
-
-        const userCredential =
-          await createUserWithEmailAndPassword(
-            auth,
-            email,
-            password
-          );
-
-
-        const user =
-          userCredential.user;
-
-
-        await setDoc(
-          doc(db, "users", user.uid),
-          {
-            name: name,
-            email: email,
-            role: "member"
-          }
+      const userDoc =
+        await getDoc(
+          doc(db, "users", uid)
         );
 
-
-        message.style.color = "green";
+      if (!userDoc.exists()) {
 
         message.textContent =
-          "Account created successfully!";
+          "User role not found.";
+
+        return;
+      }
+
+      const data = userDoc.data();
+
+      const role = data.role;
 
 
-        setTimeout(() => {
+      if (loginRole === "admin") {
 
-          window.location.href = "member.html";
+        if (role !== "admin") {
 
-        }, 1200);
+          message.textContent =
+            "This account is not an Admin.";
+
+          return;
+        }
+
+        window.location.href = "admin.html";
+
+      } else {
+
+        if (role !== "member") {
+
+          message.textContent =
+            "This account is not a Member.";
+
+          return;
+        }
+
+        window.location.href = "member.html";
+      }
+    }
 
 
-      } catch (error) {
+    // =====================================================
+    // EMAIL REGISTER
+    // =====================================================
 
-        console.error(error);
+    document
+      .getElementById("emailRegisterBtn")
+      .onclick = async () => {
+
+        const name =
+          document
+            .getElementById("registerName")
+            .value
+            .trim();
+
+        const email =
+          document
+            .getElementById("registerEmail")
+            .value
+            .trim();
+
+        const password =
+          document
+            .getElementById("registerPassword")
+            .value;
+
+        const confirmPassword =
+          document
+            .getElementById("registerConfirmPassword")
+            .value;
+
+        const message =
+          document
+            .getElementById("registerMessage");
 
         message.style.color = "#d32f2f";
 
-        message.textContent =
-          "Registration failed: " + error.message;
-      }
+        message.textContent = "";
 
-    });
+
+        if (!name || !email || !password) {
+
+          message.textContent =
+            "Please fill in all fields.";
+
+          return;
+        }
+
+
+        if (password.length < 6) {
+
+          message.textContent =
+            "Password must be at least 6 characters.";
+
+          return;
+        }
+
+
+        if (password !== confirmPassword) {
+
+          message.textContent =
+            "Passwords do not match.";
+
+          return;
+        }
+
+
+        try {
+
+          const credential =
+            await createUserWithEmailAndPassword(
+              auth,
+              email,
+              password
+            );
+
+          const uid =
+            credential.user.uid;
+
+
+          await setDoc(
+            doc(db, "users", uid),
+            {
+              name: name,
+              email: email,
+              role: "member"
+            }
+          );
+
+
+          if (registerRole === "admin_request") {
+
+            await addDoc(
+              collection(db, "adminRequests"),
+              {
+                uid: uid,
+                name: name,
+                email: email,
+                method: "email",
+                status: "pending",
+                createdAt: new Date().toISOString()
+              }
+            );
+
+            message.style.color = "green";
+
+            message.textContent =
+              "Admin request submitted. Please wait for approval.";
+
+            return;
+          }
+
+
+          message.style.color = "green";
+
+          message.textContent =
+            "Member account created successfully!";
+
+
+          setTimeout(() => {
+
+            window.location.href = "member.html";
+
+          }, 1200);
+
+
+        } catch (error) {
+
+          console.error(error);
+
+          message.textContent =
+            "Registration failed: " + error.message;
+        }
+      };
+
+
+    // =====================================================
+    // LOGIN PHONE RECAPTCHA
+    // =====================================================
+
+    function setupLoginRecaptcha() {
+
+      if (loginRecaptcha) return;
+
+      loginRecaptcha =
+        new RecaptchaVerifier(
+          auth,
+          "loginRecaptcha",
+          {
+            size: "normal"
+          }
+        );
+    }
+
+
+    // =====================================================
+    // SEND LOGIN OTP
+    // =====================================================
+
+    document
+      .getElementById("sendLoginOtpBtn")
+      .onclick = async () => {
+
+        const phone =
+          document
+            .getElementById("loginPhone")
+            .value
+            .trim();
+
+        const message =
+          document
+            .getElementById("loginMessage");
+
+        try {
+
+          setupLoginRecaptcha();
+
+          loginConfirmationResult =
+            await signInWithPhoneNumber(
+              auth,
+              phone,
+              loginRecaptcha
+            );
+
+
+          document
+            .getElementById("loginOtpArea")
+            .classList.remove("hidden");
+
+          message.style.color = "green";
+
+          message.textContent =
+            "OTP sent successfully.";
+
+        } catch (error) {
+
+          console.error(error);
+
+          message.style.color = "#d32f2f";
+
+          message.textContent =
+            "OTP failed: " + error.message;
+        }
+      };
+
+
+    // =====================================================
+    // VERIFY LOGIN OTP
+    // =====================================================
+
+    document
+      .getElementById("verifyLoginOtpBtn")
+      .onclick = async () => {
+
+        const otp =
+          document
+            .getElementById("loginOtp")
+            .value
+            .trim();
+
+        const message =
+          document
+            .getElementById("loginMessage");
+
+        try {
+
+          const credential =
+            await loginConfirmationResult.confirm(
+              otp
+            );
+
+
+          await checkUserRole(
+            credential.user.uid,
+            message
+          );
+
+        } catch (error) {
+
+          console.error(error);
+
+          message.style.color = "#d32f2f";
+
+          message.textContent =
+            "Invalid OTP.";
+        }
+      };
+
+
+    // =====================================================
+    // REGISTER PHONE RECAPTCHA
+    // =====================================================
+
+    function setupRegisterRecaptcha() {
+
+      if (registerRecaptcha) return;
+
+      registerRecaptcha =
+        new RecaptchaVerifier(
+          auth,
+          "registerRecaptcha",
+          {
+            size: "normal"
+          }
+        );
+    }
+
+
+    // =====================================================
+    // SEND REGISTER OTP
+    // =====================================================
+
+    document
+      .getElementById("sendRegisterOtpBtn")
+      .onclick = async () => {
+
+        const phone =
+          document
+            .getElementById("registerPhone")
+            .value
+            .trim();
+
+        const message =
+          document
+            .getElementById("registerMessage");
+
+        try {
+
+          setupRegisterRecaptcha();
+
+          registerConfirmationResult =
+            await signInWithPhoneNumber(
+              auth,
+              phone,
+              registerRecaptcha
+            );
+
+
+          document
+            .getElementById("registerOtpArea")
+            .classList.remove("hidden");
+
+          message.style.color = "green";
+
+          message.textContent =
+            "OTP sent successfully.";
+
+        } catch (error) {
+
+          console.error(error);
+
+          message.style.color = "#d32f2f";
+
+          message.textContent =
+            "OTP failed: " + error.message;
+        }
+      };
+
+
+    // =====================================================
+    // VERIFY REGISTER OTP
+    // =====================================================
+
+    document
+      .getElementById("verifyRegisterOtpBtn")
+      .onclick = async () => {
+
+        const name =
+          document
+            .getElementById("registerName")
+            .value
+            .trim();
+
+        const otp =
+          document
+            .getElementById("registerOtp")
+            .value
+            .trim();
+
+        const message =
+          document
+            .getElementById("registerMessage");
+
+
+        try {
+
+          const credential =
+            await registerConfirmationResult.confirm(
+              otp
+            );
+
+          const user =
+            credential.user;
+
+
+          await setDoc(
+            doc(db, "users", user.uid),
+            {
+              name: name,
+              phone: user.phoneNumber,
+              role: "member"
+            }
+          );
+
+
+          if (registerRole === "admin_request") {
+
+            await addDoc(
+              collection(db, "adminRequests"),
+              {
+                uid: user.uid,
+                name: name,
+                phone: user.phoneNumber,
+                method: "phone",
+                status: "pending",
+                createdAt: new Date().toISOString()
+              }
+            );
+
+
+            message.style.color = "green";
+
+            message.textContent =
+              "Admin request submitted. Please wait for approval.";
+
+            return;
+          }
+
+
+          message.style.color = "green";
+
+          message.textContent =
+            "Member account created successfully!";
+
+
+          setTimeout(() => {
+
+            window.location.href = "member.html";
+
+          }, 1200);
+
+
+        } catch (error) {
+
+          console.error(error);
+
+          message.style.color = "#d32f2f";
+
+          message.textContent =
+            "Registration failed: " + error.message;
+        }
+      };
 
   </script>
 
